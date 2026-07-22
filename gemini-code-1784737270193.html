@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Portfolio - Suheil Alam</title>
+    <!-- Font Awesome for Social Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            /* VIBRANT GRADIENT PALETTE */
+            --primary-gradient: linear-gradient(135deg, #FF4B2B, #FF416C, #9400D3, #00FF00);
+            --p-v-gradient: linear-gradient(to right, #9400D3, #4B0082); /* Purple to Violet */
+            --card-bg: rgba(20, 20, 20, 0.9);
+            --text-main: #FFFFFF;
+            --text-sub: #CCCCCC;
+            
+            --accent-red: #FF4B2B;
+            --accent-green: #00FF00;
+            --profile-yellow: #FFC107;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #000;
+            overflow-x: hidden;
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* BACKGROUND ANIMATIONS */
+        .background-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #121212, #001a00, #1a001a, #1a0d0d);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            z-index: -2;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .background-circles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            filter: blur(80px);
+        }
+
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            animation: circleFloat 20s infinite alternate;
+        }
+
+        .circle1 {
+            width: 500px;
+            height: 500px;
+            background: rgba(148, 0, 211, 0.15);
+            top: -100px;
+            left: -100px;
+        }
+
+        .circle2 {
+            width: 600px;
+            height: 600px;
+            background: rgba(255, 75, 43, 0.15);
+            bottom: -200px;
+            right: -100px;
+            animation-delay: -5s;
+        }
+
+        @keyframes circleFloat {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(100px, -50px) scale(1.1); }
+            100% { transform: translate(-50px, 100px) scale(0.9); }
+        }
+
+        /* HORIZONTAL CARD CONTAINER */
+        .card-container {
+            width: 100%;
+            max-width: 850px; /* Horizontal shape ke liye wide width */
+            perspective: 1000px;
+        }
+
+        .identity-card {
+            background: var(--card-bg);
+            border-radius: 30px;
+            padding: 35px;
+            display: flex;
+            flex-direction: row; /* HORIZONTAL LAYOUT */
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.7);
+            backdrop-filter: blur(10px);
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.1s ease;
+            overflow: hidden;
+        }
+
+        /* Rainbow Animated Border */
+        .identity-card::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            background: var(--primary-gradient);
+            background-size: 300% 300%;
+            z-index: -1;
+            border-radius: 33px;
+            animation: rainbowBorder 4s linear infinite;
+        }
+
+        .identity-card::after {
+            content: '';
+            position: absolute;
+            inset: 3px;
+            background: var(--card-bg);
+            border-radius: 28px;
+            z-index: -1;
+        }
+
+        @keyframes rainbowBorder {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* LEFT & RIGHT PANELS */
+        .left-panel {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            padding-right: 25px;
+        }
+
+        .right-panel {
+            flex: 1.2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* PROFILE STYLES */
+        .profile-pic-container {
+            width: 120px;
+            height: 120px;
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .profile-pic-container::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            background: var(--profile-yellow);
+            border-radius: 50%;
+            animation: profileGlow 1.5s infinite ease-out;
+            opacity: 0.7;
+        }
+
+        @keyframes profileGlow {
+            0% { transform: scale(1); opacity: 0.7; }
+            100% { transform: scale(1.1); opacity: 0; }
+        }
+
+        .profile-pic {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 4px solid var(--profile-yellow);
+            position: relative;
+            z-index: 1;
+            object-fit: cover;
+        }
+
+        .display-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: var(--p-v-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .handle {
+            font-size: 1rem;
+            color: var(--accent-red);
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        /* SKILLS BADGES */
+        .skills-badges {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .skill-badge {
+            padding: 6px 12px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.8rem;
+            color: var(--text-sub);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .skill-badge.creator { border-color: #9400D3; color: #E0B0FF; }
+        .skill-badge.editor { border-color: #FF4B2B; color: #FF9988; }
+        .skill-badge.age { border-color: #00FF00; color: #B0FFB0; }
+
+        /* CONNECT WITH ME SECTION */
+        .connect-header {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-main);
+            letter-spacing: 1.5px;
+            margin-bottom: 20px;
+            position: relative;
+            text-align: left;
+        }
+
+        .connect-header::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--primary-gradient);
+            background-size: 200% 200%;
+            animation: rainbowBorder 3s linear infinite;
+        }
+
+        .links-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .link-card {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            text-decoration: none;
+            color: var(--text-sub);
+            transition: all 0.3s ease;
+        }
+
+        .link-card i {
+            font-size: 1.4rem;
+        }
+
+        .link-card span {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .blog:hover { background: rgba(255, 75, 43, 0.15); color: #FF4B2B; box-shadow: 0 0 12px rgba(255, 75, 43, 0.3); }
+        .yt:hover { background: rgba(255, 0, 0, 0.15); color: red; box-shadow: 0 0 12px rgba(255, 0, 0, 0.3); }
+        .pin:hover { background: rgba(230, 0, 35, 0.15); color: #e60023; box-shadow: 0 0 12px rgba(230, 0, 35, 0.3); }
+        .drive:hover { background: rgba(0, 255, 0, 0.15); color: #00FF00; box-shadow: 0 0 12px rgba(0, 255, 0, 0.3); }
+
+        /* RESPONSIVE DESIGN (FOR MOBILE SCREENS) */
+        @media (max-width: 768px) {
+            .identity-card {
+                flex-direction: column;
+                padding: 25px;
+            }
+            .left-panel {
+                border-right: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                padding-right: 0;
+                padding-bottom: 25px;
+                width: 100%;
+            }
+            .right-panel {
+                width: 100%;
+            }
+            .connect-header {
+                text-align: center;
+            }
+            .connect-header::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="background-animation"></div>
+    <div class="background-circles">
+        <div class="circle circle1"></div>
+        <div class="circle circle2"></div>
+    </div>
+
+    <div class="card-container">
+        <div class="identity-card" id="tiltCard">
+            
+            <!-- LEFT PANEL: USER INFO -->
+            <div class="left-panel">
+               <div class="profile-pic-container">
+    <img src="MY PNG.png" alt="Suheil Alam Profile Picture" class="profile-pic">
+</div>                
+<h1 class="display-name">suheilalam</h1>
+                <p class="handle">@suheil__alam</p>
+
+                <div class="skills-badges">
+                    <div class="skill-badge age">
+                        <i class="fa-solid fa-cake-candles"></i> 20
+                    </div>
+                    <div class="skill-badge creator">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i> CREATOR
+                    </div>
+                    <div class="skill-badge editor">
+                        <i class="fa-solid fa-film"></i> EDITOR
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT PANEL: CONNECT WITH ME SECTION -->
+            <div class="right-panel">
+                <!-- CONNECT WITH ME HEADING -->
+                <h2 class="connect-header">CONNECT WITH ME</h2>
+                
+                <div class="links-container">
+                    <a href="https://www.blogger.com/blog/posts/8644218478023909072" target="_blank" class="link-card blog">
+                        <i class="fa-brands fa-blogger"></i>
+                        <span>BLOG</span>
+                    </a>
+                    <a href="https://www.youtube.com/channel/UCLNzwAQriGd8bFh8iwArWVw" target="_blank" class="link-card yt">
+                        <i class="fa-brands fa-youtube"></i>
+                        <span>YOUTUBE</span>
+                    </a>
+                    <a href="https://pin.it/7yVWuD9Sj" target="_blank" class="link-card pin">
+                        <i class="fa-brands fa-pinterest"></i>
+                        <span>PINTEREST</span>
+                    </a>
+                    <a href="https://drive.google.com/drive/u/2/my-drive" target="_blank" class="link-card drive">
+                        <i class="fa-brands fa-google-drive"></i>
+                        <span>PORTFOLIO IN DRIVE</span>
+<a href="https://suheilbabu.github.io/TAP-ESCAPE/" target="_blank" class="link-card game">
+                        <i class="fa-solid fa-gamepad"></i>
+                        <span>TAP ESCAPE</span>
+                    </a>
+                    <div class="link-card coming-soon">
+                        <i class="fa-solid fa-hourglass-start"></i>
+                        <span>COMING SOON</span>
+                    </div>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        const card = document.getElementById('tiltCard');
+        const cardContainer = card.parentElement;
+
+        cardContainer.addEventListener('mousemove', (e) => {
+            const rect = cardContainer.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const centerY = rect.height / 2;
+            const centerX = rect.width / 2;
+            const maxRotate = 8; 
+
+            const rotateX = ((y - centerY) / centerY) * -maxRotate;
+            const rotateY = ((x - centerX) / centerX) * maxRotate;
+
+            card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        });
+
+        cardContainer.addEventListener('mouseleave', () => {
+            card.style.transform = 'rotateX(0deg) rotateY(0deg)';
+            card.style.transition = 'transform 0.5s ease';
+        });
+
+        cardContainer.addEventListener('mouseenter', () => {
+            card.style.transition = 'transform 0.1s ease'; 
+        });
+    </script>
+
+</body>
+</html>
