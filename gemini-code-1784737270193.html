@@ -99,7 +99,7 @@
         /* HORIZONTAL CARD CONTAINER */
         .card-container {
             width: 100%;
-            max-width: 850px; /* Horizontal shape ke liye wide width */
+            max-width: 1050px;
             perspective: 1000px;
         }
 
@@ -108,10 +108,10 @@
             border-radius: 30px;
             padding: 35px;
             display: flex;
-            flex-direction: row; /* HORIZONTAL LAYOUT */
+            flex-direction: row;
             align-items: center;
             justify-content: space-between;
-            gap: 30px;
+            gap: 25px;
             box-shadow: 0 15px 35px rgba(0,0,0,0.7);
             backdrop-filter: blur(10px);
             position: relative;
@@ -150,15 +150,15 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* LEFT & RIGHT PANELS */
+        /* PANELS STYLES */
         .left-panel {
-            flex: 1;
+            flex: 0.9;
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
             border-right: 1px solid rgba(255, 255, 255, 0.1);
-            padding-right: 25px;
+            padding-right: 20px;
         }
 
         .right-panel {
@@ -168,10 +168,72 @@
             justify-content: center;
         }
 
+        /* SUPPORT / QR SIDE PANEL STYLES */
+        .qr-panel {
+            flex: 0.9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+            padding-left: 20px;
+        }
+
+        .qr-header {
+            font-size: 0.95rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, #00FF00, #FFC107, #FF4B2B);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            animation: pulseText 2s infinite alternate;
+        }
+
+        @keyframes pulseText {
+            0% { opacity: 0.8; transform: scale(0.98); }
+            100% { opacity: 1; transform: scale(1.02); }
+        }
+
+        .qr-box {
+            position: relative;
+            width: 140px;
+            height: 140px;
+            border-radius: 16px;
+            padding: 8px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 2px solid rgba(0, 255, 0, 0.4);
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .qr-box:hover {
+            transform: scale(1.05);
+            border-color: #00FF00;
+            box-shadow: 0 0 30px rgba(0, 255, 0, 0.5);
+        }
+
+        .qr-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+
+        .qr-subtext {
+            font-size: 0.75rem;
+            color: var(--accent-green);
+            margin-top: 10px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
         /* PROFILE STYLES */
         .profile-pic-container {
-            width: 120px;
-            height: 120px;
+            width: 110px;
+            height: 110px;
             position: relative;
             margin-bottom: 15px;
         }
@@ -205,7 +267,7 @@
         }
 
         .display-name {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             font-weight: 700;
             background: var(--p-v-gradient);
             -webkit-background-clip: text;
@@ -213,30 +275,30 @@
         }
 
         .handle {
-            font-size: 1rem;
+            font-size: 0.95rem;
             color: var(--accent-red);
             font-weight: 500;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
 
         /* SKILLS BADGES */
         .skills-badges {
             display: flex;
             justify-content: center;
-            gap: 8px;
+            gap: 6px;
             flex-wrap: wrap;
         }
 
         .skill-badge {
-            padding: 6px 12px;
+            padding: 5px 10px;
             border-radius: 20px;
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: var(--text-sub);
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 5px;
         }
 
         .skill-badge.creator { border-color: #9400D3; color: #E0B0FF; }
@@ -245,11 +307,11 @@
 
         /* CONNECT WITH ME SECTION */
         .connect-header {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-weight: 700;
             color: var(--text-main);
             letter-spacing: 1.5px;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             position: relative;
             text-align: left;
         }
@@ -257,9 +319,9 @@
         .connect-header::after {
             content: '';
             position: absolute;
-            bottom: -6px;
+            bottom: -5px;
             left: 0;
-            width: 60px;
+            width: 50px;
             height: 3px;
             background: var(--primary-gradient);
             background-size: 200% 200%;
@@ -269,14 +331,14 @@
         .links-container {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
+            gap: 10px;
         }
 
         .link-card {
             display: flex;
             align-items: center;
-            gap: 12px;
-            padding: 12px 16px;
+            gap: 10px;
+            padding: 10px 12px;
             background: rgba(255, 255, 255, 0.05);
             border-radius: 12px;
             text-decoration: none;
@@ -285,11 +347,11 @@
         }
 
         .link-card i {
-            font-size: 1.4rem;
+            font-size: 1.2rem;
         }
 
         .link-card span {
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             font-weight: 600;
         }
 
@@ -297,9 +359,11 @@
         .yt:hover { background: rgba(255, 0, 0, 0.15); color: red; box-shadow: 0 0 12px rgba(255, 0, 0, 0.3); }
         .pin:hover { background: rgba(230, 0, 35, 0.15); color: #e60023; box-shadow: 0 0 12px rgba(230, 0, 35, 0.3); }
         .drive:hover { background: rgba(0, 255, 0, 0.15); color: #00FF00; box-shadow: 0 0 12px rgba(0, 255, 0, 0.3); }
+        .game:hover { background: rgba(148, 0, 211, 0.15); color: #9400D3; box-shadow: 0 0 12px rgba(148, 0, 211, 0.3); }
+        .coming-soon { opacity: 0.6; cursor: not-allowed; }
 
-        /* RESPONSIVE DESIGN (FOR MOBILE SCREENS) */
-        @media (max-width: 768px) {
+        /* RESPONSIVE DESIGN FOR MOBILE */
+        @media (max-width: 900px) {
             .identity-card {
                 flex-direction: column;
                 padding: 25px;
@@ -308,10 +372,17 @@
                 border-right: none;
                 border-bottom: 1px solid rgba(255, 255, 255, 0.1);
                 padding-right: 0;
-                padding-bottom: 25px;
+                padding-bottom: 20px;
                 width: 100%;
             }
             .right-panel {
+                width: 100%;
+            }
+            .qr-panel {
+                border-left: none;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+                padding-left: 0;
+                padding-top: 20px;
                 width: 100%;
             }
             .connect-header {
@@ -335,12 +406,12 @@
     <div class="card-container">
         <div class="identity-card" id="tiltCard">
             
-            <!-- LEFT PANEL: USER INFO -->
+            <!-- LEFT PANEL -->
             <div class="left-panel">
-               <div class="profile-pic-container">
-    <img src="MY PNG.png" alt="Suheil Alam Profile Picture" class="profile-pic">
-</div>                
-<h1 class="display-name">suheilalam</h1>
+                <div class="profile-pic-container">
+                    <img src="MY PNG.jpg" alt="Suheil Alam Profile Picture" class="profile-pic">
+                </div>
+                <h1 class="display-name">suheilalam</h1>
                 <p class="handle">@suheil__alam</p>
 
                 <div class="skills-badges">
@@ -356,9 +427,8 @@
                 </div>
             </div>
 
-            <!-- RIGHT PANEL: CONNECT WITH ME SECTION -->
+            <!-- RIGHT PANEL -->
             <div class="right-panel">
-                <!-- CONNECT WITH ME HEADING -->
                 <h2 class="connect-header">CONNECT WITH ME</h2>
                 
                 <div class="links-container">
@@ -376,8 +446,9 @@
                     </a>
                     <a href="https://drive.google.com/drive/u/2/my-drive" target="_blank" class="link-card drive">
                         <i class="fa-brands fa-google-drive"></i>
-                        <span>PORTFOLIO IN DRIVE</span>
-<a href="https://suheilbabu.github.io/TAP-ESCAPE/" target="_blank" class="link-card game">
+                        <span>DRIVE</span>
+                    </a>
+                    <a href="https://suheilbabu.github.io/TAP-ESCAPE/" target="_blank" class="link-card game">
                         <i class="fa-solid fa-gamepad"></i>
                         <span>TAP ESCAPE</span>
                     </a>
@@ -385,8 +456,16 @@
                         <i class="fa-solid fa-hourglass-start"></i>
                         <span>COMING SOON</span>
                     </div>
-                    </a>
                 </div>
+            </div>
+
+            <!-- QR / SUPPORT PANEL -->
+            <div class="qr-panel">
+                <h3 class="qr-header">🚀 FUEL MY CREATIVITY!</h3>
+                <div class="qr-box">
+                    <img src="QR.jpg" alt="Support QR Code" class="qr-img">
+                </div>
+                <p class="qr-subtext"><i class="fa-solid fa-bolt"></i> SCAN TO HELP ME GROW</p>
             </div>
 
         </div>
